@@ -1,4 +1,4 @@
-package main
+package day01
 
 import (
 	"bufio"
@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func increaseCheck(nums []int) int {
+func PartOne(nums []int) int {
   incrementCount := 0
   currentTotal := 0
 
@@ -22,7 +22,7 @@ func increaseCheck(nums []int) int {
   return incrementCount
 }
 
-func partTwo(nums []int) int {
+func PartTwo(nums []int) int {
   var newNums []int
 
   for i := range nums {
@@ -41,11 +41,23 @@ func partTwo(nums []int) int {
   fmt.Println(newNums)
   fmt.Println(nums)
 
-  return increaseCheck(newNums)
+  return PartOne(newNums)
 }
 
-func Dayone() int {
-  file, err := os.Open("./dayone.txt")
+func LoadFile(filename string) *os.File {
+  file, err := os.Open(filename)
+
+  if err != nil {
+    fmt.Println(err)
+  }
+
+  defer file.Close()
+
+  return file
+}
+
+func Dayone() {
+  file, err := os.Open("./input.txt")
   var nums []int
 
   if err != nil {
@@ -65,5 +77,6 @@ func Dayone() int {
     nums = append(nums, num)
   }
 
-  return partTwo(nums)
+  fmt.Println(PartOne(nums))
+  fmt.Println(PartTwo(nums))
 }
