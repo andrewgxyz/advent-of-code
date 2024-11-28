@@ -12,7 +12,5 @@ func LoadFile(filename string) *os.File {
     fmt.Println(err)
   }
 
-  defer file.Close()
-
   return file
 }

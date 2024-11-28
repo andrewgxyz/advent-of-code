@@ -63,6 +63,8 @@ func Daytwo() int {
   file := utils.LoadFile("./day02/input.txt")
   scan := bufio.NewScanner(file)
 
+  defer file.Close()
+
   return PartTwo(scan)
   // fmt.Println(PartTwo(nums))
 }
