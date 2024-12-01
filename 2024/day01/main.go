@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -14,6 +15,8 @@ func PartOne(file *os.File) int {
   scan := bufio.NewScanner(file)
 
   lines := utils.LoadLinesToString(scan)
+  var left []int
+  var right []int
   total := 0
 
   for _, line := range lines {
@@ -22,7 +25,19 @@ func PartOne(file *os.File) int {
     num1, _ := strconv.Atoi(nums[0]) 
     num2, _ := strconv.Atoi(nums[1]) 
 
-    diff := num2 - num1
+    left = append(left, num1)
+    right = append(right, num2)
+  }
+
+  sort.Ints(left)
+  sort.Ints(right)
+
+  fmt.Println(left)
+  fmt.Println(right)
+
+  for key, num := range left {
+    diff := right[key] - num
+
     fmt.Println(diff)
 
     if diff < 0 {

@@ -17,7 +17,7 @@ func TestPartOne(t *testing.T) {
 }
 
 func TestPartTwo(t *testing.T) {
-  file := utils.LoadFile("./input.txt")
+  file := utils.LoadFile("./input_test.txt")
   num := day01.PartTwo(file)
 
   if num != 31 {
