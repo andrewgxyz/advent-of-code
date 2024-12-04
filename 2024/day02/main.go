@@ -99,19 +99,20 @@ func PartTwo(file *os.File) int {
       if key == 0 {
         isDecrease = d < 0
       } else {
-        if (d > 0 && isDecrease) || (d < 0 && !isDecrease) {
+        if d == 0 {
           unsafeCount += 1
-        } else if d > 3 || d < -3 || d == 0 {
-          isSafe = false
+        } else if (d > 0 && isDecrease) || (d < 0 && !isDecrease) {
           unsafeCount += 1
-        }
-
-        if unsafeCount > 1 {
+        } else if d > 3 || d < -3 {
           isSafe = false
+          break
         }
       }
     }
 
+    if unsafeCount > 1 {
+      isSafe = false
+    }
 
     if isSafe {
       safe += 1
